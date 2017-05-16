@@ -1,0 +1,24 @@
+//процесс установки Composer
+//для установки требуется утилита cURL
+
+1. Создаем папку в директории пользователя, заходим в неё.
+2. Скачиваем установочные файлы:
+    curl -sS https://getcomposer.org/installer | php
+3. Изменяем права на 777:
+    chmod -R 777 composer.phar
+4. Перемещаем его в папку /usr/local/bin/composer с именем composer:
+    mv composer.phar /usr/local/bin/composer
+5. Проверяем версию установленного Composer-а:
+    php composer -version
+    
+Внутри рабочей папки с проектом создаем файл composer.json, в которм перечисляем пакеты и их версии.
+Например:
+    {   "require": {
+            "monolog/monolog": "1.22.*"
+        }
+    }
+Затем выполняем:
+    $   composer install
+    
+Позже при необходимости можно обновить пакет:
+    $   composer update monolog/monolog
