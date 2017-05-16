@@ -1,0 +1,33 @@
+sudo service apache2  reload  //перезапуск сервера Apache с применением новых настроек конфига
+                      start
+                      stop
+                      restart
+sudo a2ensite site1.com.cfg   //применяет конфигурацию для домена и делает её активной
+/etc/hosts        //перечень хостов с ip
+/etc/apache2/sites-available    //файлы конфигураций для хостов
+
+Конфигурационный файл site_name.conf (лежит в папке sites-available):
+---------------------------------------------------------------------
+<VirtualHost *:80>
+  ServerName  site_name.ru
+  ServerAlias www.site_name.ru
+  ServerAdmin webmaster@localhost
+  
+  DocumentRoot  /home/michail/www/site_name/      //путь к папке сайта
+  
+  ErrorLog ${APACHE_LOG_DIR}/error.log
+  CustomLog ${APACHE_LOG_DIR}/access.log combined
+ </VirtualHost>
+ 
+ После изменения конфигурационного файла хоста необходимо применить новую конфигурацию:
+ sudo a2ensite site_name.conf
+ 
+ Проверить, чтобы в файле /ect/apache2/apache2.conf было закомментировано:
+    <Directory />
+      #AllowOverride None (Либо нужно заменить на All)
+      #Require all denied (Либо заменить на all granted)
+    </Directory>
+ Иначе может выдаваться ошибка 403 Client denied by server configuration в браузере при обращении к хосту.
+ 
+ Также важно иметь права 777 на папку сайта:
+    sudo chmod -R 777 www/
