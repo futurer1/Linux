@@ -1,17 +1,22 @@
 //Установка XDebug (Подробная информация: https://habrahabr.ru/post/250323/)
 
 Linux (php5):
-    sudo apt-get install php5-xdebug
-    sudo php5enmod xdebug
+=============
+1.    sudo apt-get install php5-xdebug      (установка пакета)
+2.    sudo php5enmod xdebug                 (включение модуля)
+
+3.    sudo service apache2 restart          (перезапуск сервера)
 
 Linux (php7):
-    sudo apt-get install php-xdebug
-    sudo phpenmod xdebug
-
-//phpenmod - включает модуль
-//phpdismod - выключает модуль
+=============
+1.    sudo apt-get install php-xdebug       (установка пакета)
+2.    sudo phpenmod xdebug                  (включение модуля) phpenmod - включает; phpdismod - выключает
+3.    sudo service php7.0-fpm restart       (перезапуск сервера)
+4.    cd /etc/php/7.0/mods-available        (переходим в каталог mods-available)
+5.    sudo gedit xdebug.ini                 (редактируем файл в редакторе gedit)
 
 Windows:
+========
     - качаем xdebug.dll с https://xdebug.org, помеаем в папку с dll библиотеками PHP
     - в php.ini раскомментируем:
     
