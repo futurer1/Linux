@@ -23,6 +23,7 @@ echo >> file_name   //создает файл
 rm file_name        //удаляет файл
 rm folder_name -r   //рекурсивно удаляет директорий и всё внутри него
 cp file_name path/new_file_name     //копирует файл с возможностью изменения имени. Пример: cp file1.html ~/file2.html
+cp -i file1.html ~/file2.html       //Перед перезаписью файла будет выдан запрос на ваше согласие, если он уже существует в папке.
 cp -R file_name path/new_file_name  //копирует директорий рекурсивно из текущей папки в новое место возможно с переименованием
 
 mv folder_name path/new_folder_name           //перемещает директорий
