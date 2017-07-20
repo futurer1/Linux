@@ -1,0 +1,28 @@
+//Установка XDebug (Подробная информация: https://habrahabr.ru/post/250323/)
+
+Linux (php5):
+    sudo apt-get install php5-xdebug
+    sudo php5enmod xdebug
+
+Linux (php7):
+    sudo apt-get install php-xdebug
+    sudo phpenmod xdebug
+
+//phpenmod - включает модуль
+//phpdismod - выключает модуль
+
+Windows:
+    - качаем xdebug.dll с https://xdebug.org, помеаем в папку с dll библиотеками PHP
+    - в php.ini раскомментируем:
+    
+zend_extension="%путь до php%/ext/php_xdebug.dll"
+;эта опция как раз и отвечает за автостарт
+xdebug.remote_autostart=on
+xdebug.remote_enable=on
+xdebug.remote_handler="dbgp"
+xdebug.remote_host="localhost"
+;порт может быть и 9000, но у openserver он зарезервирован под php
+xdebug.remote_port=9001
+xdebug.remote_mode=req
+;ключ IDE (может быть любым) понадобится позже
+xdebug.idekey="PHPSTORM"
