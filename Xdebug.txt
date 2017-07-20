@@ -15,19 +15,26 @@ Linux (php7):
 4.    cd /etc/php/7.0/mods-available        (переходим в каталог mods-available)
 5.    sudo gedit xdebug.ini                 (редактируем файл в редакторе gedit)
 
+      Содержимое:
+          zend_extension=xdebug.so
+          xdebug.remote_autostart=on
+          xdebug.remote_enable=on
+          xdebug.remote_port=9001
+          xdebug.idekey="PHPSTORM"
+
 Windows:
 ========
-    - качаем xdebug.dll с https://xdebug.org, помеаем в папку с dll библиотеками PHP
-    - в php.ini раскомментируем:
+1.    Качаем xdebug.dll с https://xdebug.org, помеаем в папку с dll библиотеками PHP
+2.    В php.ini раскомментируем:
     
-zend_extension="%путь до php%/ext/php_xdebug.dll"
-;эта опция как раз и отвечает за автостарт
-xdebug.remote_autostart=on
-xdebug.remote_enable=on
-xdebug.remote_handler="dbgp"
-xdebug.remote_host="localhost"
-;порт может быть и 9000, но у openserver он зарезервирован под php
-xdebug.remote_port=9001
-xdebug.remote_mode=req
-;ключ IDE (может быть любым) понадобится позже
-xdebug.idekey="PHPSTORM"
+          zend_extension="%путь до php%/ext/php_xdebug.dll"
+          ;эта опция как раз и отвечает за автостарт
+          xdebug.remote_autostart=on
+          xdebug.remote_enable=on
+          xdebug.remote_handler="dbgp"
+          xdebug.remote_host="localhost"
+          ;порт может быть и 9000, но у openserver он зарезервирован под php
+          xdebug.remote_port=9001
+          xdebug.remote_mode=req
+          ;ключ IDE (может быть любым) понадобится позже
+          xdebug.idekey="PHPSTORM"
