@@ -1230,35 +1230,12 @@ XFCE
 
 ТЕКСТОВЫЕ РЕДАКТОРЫ
 
-mousepad
-	
-
-Редактор XFCE
-
-gedit
-	
-
-Редактор Gnome
-
-kate
-	
-
-Редактор KDE
-
-nano
-	
-
-Простой терминальный редактор
-
-vim
-	
-
-http://help.ubuntu.ru/wiki/vim
-
-emacs
-	
-
-http://alexott.net/ru/writings/altlinux-emacs/
+mousepad	Редактор XFCE
+gedit		Редактор Gnome
+kate		Редактор KDE
+nano		Простой терминальный редактор
+vim 		http://help.ubuntu.ru/wiki/vim
+emacs		http://alexott.net/ru/writings/altlinux-emacs/
 
 ОСТАНОВКА СИСТЕМЫ
 
