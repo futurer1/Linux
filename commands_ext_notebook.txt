@@ -688,186 +688,114 @@ netstat -tup
 socklist
 
 Посмотреть список приложений, которые открывают порты:
-
-
 netstat -anp -udp -tcp | grep LISTEN
 
 Узнать статус IPTABLES:
-
-
 iptables -Lnv
 
 Открыть доступ ко всем портам:
-
-
-1
-2
-3
-
  iptables -P INPUT ACCEPT
-iptables -P FORWARD ACCEPT
-iptables -P OUTPUT ACCEPT
+ iptables -P FORWARD ACCEPT
+ iptables -P OUTPUT ACCEPT
  
 
 Удалить все цепочки:
-
-
 iptables -X
 
 Управление NAT
 
 Установить NAT на интерфейсе eth0:
-
-
 iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 
 Перенаправление порта 22022, который использется для ssh:
-
-
 iptables -t nat -A PREROUTING -p tcp -d 99.99.99.99 -dport 22022 -j DNAT -to 192.168.0.2:22
 
 Перенаправление диапазона портов 900-1000:
-
-
-1
-
  iptables -t nat -A PREROUTING -p tcp -d 99.99.99.99 -dport 900:1000 -j DNAT  -to 192.168.0.2:900-1000
  
 
 Проверка статуса NAT
-
-
 iptables -L -t nat
 
 Проверка доменных имён
 
 Проверка обратной зоны
-
-
 dig -x IP
 
 Проверка записей (на примере mx)
-
-
 dig aleksdem.com mx
 
 Проверка данных с определённого DNS
-
-
 dig aleksdem.com @ns1.example.com
 
 проверка порта UDP
 
 проверяем, открыт ли порт 5060 на удалённом хосте 127.0.0.1 :)
-
-
 nc -uv 127.0.0.1 5060
 
 Отправка письма с вложением
 
 Отправка письма с вложением из консоли:
-
-
-1
-
  mutt -s "SUBJ" -a /tmp/test.txt user@wikiadmin.net < home/user/MAIL
  
 
 Просим компьютер сигналить, когда какой-либо из серверов недоступен
 
 Ежесекундно пингуем адрес и, если недоступен, бипер должен выдать сигнал
-
-
-1
-
  while true; do ping -c1W1w1 aleksdem.com 2>/dev/null || { echo Server down; beep; } ; sleep 1; done
  
 
 Внимание, команды beep по умолчанию в системе нет, надо ставить отдельно
-
-
 apt-get install beep
 
 создание и запись ISO образов
 
 Посмотреть все доступные CD-ROM:
-
-
 cdrecord -scanbus
 
 Создание ISO образов с диска CD-ROM:
-
-
 dd if=/dev/hdb of=/tmp/mycd.iso bs=2048 conv=notrunc
 
 работа с процессами
 
 Все запущенные процессы имеют уникальные номера – PID. Показать все загруженные процессы:
-
-
 ps axjf
 
 ps auxw (like FreeBSD)
 
 Показать PID определенного процесса – sshd:
-
-
 pgrep -l sshd
 
 Показать PID процесса использующий порт 22:
-
-
 fuser -va 22/tcp
 
 Показывает PID процесса имеющего доступ к /home:
-
-
 fuser -va /home
 
 Показывает список процессы, которые используют /home:
-
-
 lsof /home
 
 Послать процессу с PID-ом 7777 сигнал TERM – завершить процесс:
-
-
 killall TERM 7777
 
 Послать процессу x.sh сигнал TERM – завершить процесс:
-
-
 killall term x.sh
 
 Убить все процессы имеющие x.sh
-
-
 killall x.sh
 
 Послать процессу с именем httpd сигнал HUP – остановить процесс:
-
-
 killall HUP httpd
 
 Убить все процессы имеющие доступ к /home:
-
-
 fuser -k -TERM -m /home
 
 Важные сигналы посылаемые процессам:
-
-
-1
-2
-3
-4
-5
-
  1 – HUP остановить процесс
-2 – INT прервать процесс
-3 – QUIT выйти
-9 – KILL «убить» процесс
-15 – TERM завершить процесс
+ 2 – INT прервать процесс
+ 3 – QUIT выйти
+ 9 – KILL «убить» процесс
+ 15 – TERM завершить процесс
  
 
 Runlevels
@@ -875,181 +803,108 @@ Runlevels
 После загрузки ядра Linux начинают загружаться различные демоны и программы, такие как NetworkManager, Evolution и т. д., результат которых мы видим у себя после загрузки на рабочем столе. Загрузка каждой службы осуществляется скриптом. Все скрипты лежат в /etc/init.d. Runlevels – это целое число, которое определяет «уровень загрузки».
 
 Уровни загрузки бывают:
-
-
-1
-2
-3
-4
-5
-6
-7
-
  Runlevels=0 Выключение компьютера
-Runlevels=1 режим Single-User
-Runlevels=2 Текстовый режим без поддержки сети
-Runlevels=3 Текстовый режим с поддержкой сети
-Runlevels=4
-Runlevels=5 Графический режим
-Runlevels=6 Перезагрузка компьютера.
+ Runlevels=1 режим Single-User
+ Runlevels=2 Текстовый режим без поддержки сети
+ Runlevels=3 Текстовый режим с поддержкой сети
+ Runlevels=4
+ Runlevels=5 Графический режим
+ Runlevels=6 Перезагрузка компьютера.
  
 
 То есть скрипты, которые должны загружаться только в текстовом режиме с поддержкой сети, имеют Runlevels равный 3. Более простой вариант настройки:
 
 Очень удобная настройка Runlevels (необходима установка пакета sysv-rc-conf):
-
-
 sysv-rc-conf
 
 Показать список всех скриптов с соответствующими им Runlevels:
-
-
-1
-2
-
  chkconfig -list
-rc-status -a (gentoo)
+ rc-status -a (gentoo)
  
 
 Показать разрешенные Runlevels только отдельного скрипта, в нашем случае sshd:
-
-
 chkconfig -list sshd
 
 Выставление скрипту sshd значений Runlevels по-умолчанию:
-
-
-1
-2
-
  update-rc.d sshd defaults  #Debian
-rc-update add sshd default
+ rc-update add sshd default
  
 
 Добавление скрипту udev Runlevels 3 и 5:
-
-
 chkconfig udev -level 35 on
 
 Изменить параметры для скрипта sshd (для Debian-подобных дистрибутивов):
-
-
 update-rc.d sshd start 20 2 3 4 5 . stop 20 0 1 6
 
 Отключение у sshd всех Runlevels:
-
-
 chkconfig sshd off
 
 Отключение у sshd всех Runlevel (для Debian-подобных дистрибутивов):
-
-
 update-rc.d -f udev remove
 
 Работа с ядром и модулями
 
 Узнать текущую версию ядра Linux:
-
-
 uname -a
 
 Работа с модулями ядра. Список всех модулей загруженных в ядро:
-
-
 lsmod
 
 Загрузка модуля на примере isdn:
-
-
 modprobe isdn
 
 Создание сжатого образа ядра системы:
-
-
 make
 
 Компиляция модуля:
-
-
 make modules
 
 Установка модуля:
-
 make modules_install
 
 Установка в ядро системы:
-
-
 make install
 
 Конвертирование различной информации
 
 Выводит список всех доступных кодировок:
-
-
 iconv -l
 
 Смена кодировки. Был файл cp1251.txt с кодировкой cp1251, а в итоге получился файл utf8.txt с кодировкой utf8:
-
-
-1
-
  iconv -f cp1251 -t UTF-8 -o file_cp1251.txt > file_utf8.txt
  
 
 Конвертирование PDF в JPEG
 
 Конвертируется name.pdf в постраничные JPEG изображения (в некоторых дистрибутивах необходимо установить пакет imagemagick):
-
-
-1
-
  convert name.pdf name-%03d.jpg
  
 
 Конвертируются JPEG изображения в PDF (в некоторых дистрибутивах необходимо установить пакет imagemagick):
-
-
 convert name.jpeg name.pdf
 
 Конвертирование видео
-
-
-1
-
  mencoder -o videoout.avi -oac mp3lame -ovc lavc -srate 11025 -channels 1 -af-adv force=1 -lameopts preset=medium -lavcopts vcodec=msmpeg4v2:vbitrate=600 -mc 0 vidoein.AVI
  
 
 Конвертирование аудио
 
 Копирование треков с AudioCD в текущую директорию wav-файлами:
-
-
 cdparanoia -B
 
 Конвертирование wav-файлов в mp3 с качеством 256 kb/s:
-
-
 lame -b 256 in.wav out.mp3
 
 Конвертирование wav-файлов в Ogg Vorbis с качеством 256 kb/s:
-
-
 oggenc in.wav -b 256 out.ogg
 
 Печать на принтере
 
 Выбор принтера по-умолчанию на примере Canon LBP-2900
-
-
 export PRINTER=lbp2900
 
 Распечатать на принтере Canon LBP-2900 две копии файла name.txt:
-
-
 lpr #2 name.txt
 
 Удаление всех задач с принтера по-умолчанию:
-
-
 lprm -
