@@ -13,8 +13,9 @@ apt-get install virtualbox-dkms
 
 Запускаем сервер из каталога где лежит файл конфигурации vagrant_config.yml:
   /home/mafonin/PhpstormProjects/sweb-main
-vagrant up
-vagrant ssh   - подключение
+vagrant up    - поднять виртуальную машину
+vagrant halt  - заглушить виртуальную машину
+vagrant ssh   - подключение (если нужно выйти из ssh, то команда: logout)
 vagrant destroy - рассоединение
 
 https://rtfm.co.ua/vagrant-ubuntu-virtualbox-ustanovka-i-zapusk/
