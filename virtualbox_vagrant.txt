@@ -1,5 +1,5 @@
-Дока по установке: 
-https://losst.ru/ustanovka-virtualbox-v-ubuntu-16-04
+Дока по установке:              https://losst.ru/ustanovka-virtualbox-v-ubuntu-16-04
+Дока по работе с Vagrant:       http://eax.me/vagrant/
 
 Vagrant:
 
@@ -16,7 +16,12 @@ apt-get install virtualbox-dkms
 vagrant up    - поднять виртуальную машину
 vagrant halt  - заглушить виртуальную машину
 vagrant ssh   - подключение (если нужно выйти из ssh, то команда: logout)
-vagrant destroy - рассоединение
+vagrant destroy - рассоединение, удаляет виртуальную машину
+
+whereis vagrant - Команда whereis работает примерно как и which, 
+                  однако она также ищет страницы руководства и файлы с исходными текстами.
+                  Ищет где находится Vagrant
+vagrant global-status   - увидеть все вагранты и их состояние
 
 https://rtfm.co.ua/vagrant-ubuntu-virtualbox-ustanovka-i-zapusk/
 
