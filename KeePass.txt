@@ -1,3 +1,4 @@
+Вторая версия KeyPass (не открывает старые файлы .kdb)
 http://www.linuxrussia.com/keepass2-ubuntu-2.html
 
 Установка:
