@@ -1,0 +1,26 @@
+http://www.linuxrussia.com/keepass2-ubuntu-2.html
+
+Установка:
+sudo add-apt-repository ppa:jtaylor/keepass
+sudo apt update
+sudo apt-get install keepass2
+
+Удаление:
+sudo apt-get remove --autoremove keepass2
+
+Русификация:
+http://keepass.info/translations.html
+
+Для русификации программы, нужно зайти на официальный сайт программы:
+http://keepass.info/translations.html
+И скачать файл локализации для версии 2:
+Когда программа обновится, то возможно снова придется скачать файл локализации и заменить.
+
+Теперь переходим в каталог:
+    ~/.local/share/
+
+Создаем каталог:
+    KeePass
+
+Переходим в созданный каталог и распаковываем в него файл локализации:
+После чего переходим в программе View -  Change Language и выбираем в списке "Russian" русский язык
