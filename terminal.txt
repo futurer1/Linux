@@ -60,4 +60,4 @@ mc                            //Midnight Commander файловая оболоч
 whereis имя_файла             //Команда whereis работает примерно как и which, 
                               //однако она также ищет страницы руководства и файлы с исходными текстами.
 
-scp ~/local_folder/file_name.txt  remote_some_host.ru:~    //копирование файла через SSH на удаленную машину в свою домашнюю папку там
+scp ~/local_folder/file_name.txt  remote_some_host.ru:~    //копирование файла через SSH на удаленную машину в свою домашнюю папку там (Подробнее: https://www.shellhacks.com/ru/copy-files-ssh-10-examples/)
