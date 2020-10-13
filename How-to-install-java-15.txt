@@ -1,0 +1,25 @@
+Установка Java 15.
+
+1. Скачать архив openjdk-15_linux-x64_bin.tar.gz
+https://jdk.java.net/15/
+
+2. Создать папку в /opt:
+
+cd /opt/
+sudo mkdir java-jdk
+
+3. Распаковать в неё архив:
+sudo tar -C /opt/java-jdk/ -zxf ~/Downloads/openjdk-15_linux-x64_bin.tar.gz
+
+4. Назначить эту версию основной:
+
+sudo update-alternatives --install /usr/bin/java java /opt/java-jdk/jdk-15/bin/java 1
+sudo update-alternatives --install /usr/bin/javac javac /opt/java-jdk/jdk-15/bin/javac 1
+
+5. Проверить, что версия установлена:
+
+java --version
+
+//openjdk 15 2020-09-15
+//OpenJDK Runtime Environment (build 15+36-1562)
+//OpenJDK 64-Bit Server VM (build 15+36-1562, mixed mode, sharing)
