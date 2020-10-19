@@ -1,0 +1,3 @@
+// терминальные команды для ОС CentOs семейства
+
+sudo yum install -y mc // установка программы Midnight Commander
