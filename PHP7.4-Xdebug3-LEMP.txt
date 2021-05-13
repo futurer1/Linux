@@ -1,0 +1,117 @@
+Установка PHP7.4 + xDebug 3
+
+Полезные ссылки на инструкции: 
+------------------------------
+https://www.it-rem.ru/ubuntu-kak-ustanovit-php7-4-v-ubuntu-19-04-18-04-16-04.html
+https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-ubuntu-18-04-ru
+https://xdebug.org/docs/upgrade_guide
+
+1. Подключение репозитория и обновление данных о нём
+sudo apt-get update
+sudo add-apt-repository ppa:ondrej/php
+
+2. Установка PHP7.4
+sudo apt -y install php7.4
+
+проверка версии PHP
+php -v
+
+3. Получение списка доступных модулей
+apt-cache search php7.4
+
+4. Установка xDebug
+apt-get install php-xdebug
+
+5. Запустить php fpm
+systemctl start php7.4-fpm
+
+проверить, что он запущен 
+systemctl status php7.4-fpm
+
+6. Установить nginx
+sudo apt-get install nginx
+
+7. Создаем файлы конфигурации домена и ссылку
+sudo touch /etc/nginx/sites-available/mydomain.tld.conf
+sudo ln -s /etc/nginx/sites-available/mydomain.tld.conf /etc/nginx/sites-enabled/mydomain.tld.conf
+sudo nano /etc/nginx/sites-available/mydomain.tld.conf
+
+конфигурация файла mydomain.tld.conf должна быть следующей:
+----------------------------------------------------
+server {
+    listen 127.0.0.1:80; # если хотим закрыть из внешки доступ к своему хосту
+    # listen 80; # если хотим, чтобы хост был доступен из внешки
+    server_name mydomain.tld;
+    root /home/username/PhpstormProjects/someDirectoryProject/; # если хотим направить на папку проект в PHPStorm
+    #root /var/www/mydomain.tld; # если хотим направить на папку домена
+
+    error_log /var/log/nginx/error-maindomain.tld.log;
+
+    location / {
+        index index.php;
+        try_files $uri $uri/ /index.php?$args;
+    }
+
+    location ~ .php$ {
+        include fastcgi.conf;
+        fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+    }
+}
+----------------------------------------------------
+
+
+8. Создаем директорию сайта и файл в ней
+sudo mkdir -p /var/www/mydomain.tld
+sudo touch /var/www/mydomain.tld/index.php
+
+добавляем содержимое внутрь файла index.php (для вывода информации о настройках PHP и xDebug)
+----------------------------------------------------
+<?php
+phpinfo() . PHP_EOL;
+echo "DEBUG INFO:" . PHP_EOL;
+xdebug_info();
+----------------------------------------------------
+
+Меняем пользователя файлов в этой папке
+sudo chown -R www-data:www-data /var/www/mydomain.tld
+
+9. Проверяем конфиг nginx
+sudo nginx -t
+
+10. Перезапускаем nginx, чтобы применилась конфигурация
+sudo nginx -s reload
+
+11. Проверяем в браузере по адресу домена, либо просто http://127.0.0.1
+
+Теперь нужно настроить xDebug 3
+-------------------------------
+
+в /etc/php/7.4/fpm/php.ini надо дописать:
+порт 9004, он должен быть указан в IDE.
+127.0.0.1 локалхост
+----------------------------------------------------
+[XDebug]
+xdebug.mode=debug
+xdebug.start_with_request=yes
+xdebug.remote_handler = dbgp
+xdebug.client_host = 127.0.0.1
+xdebug.remote_log = /tmp/xdebug_remote.log
+xdebug.remote_mode = req
+xdebug.client_port = 9004
+----------------------------------------------------
+
+Перезапустить все сервисы, чтобы изменения вступили в силу
+
+sudo service php7.4-fpm restart
+sudo service nginx restart
+sudo systemctl restart nginx
+
+Посмотреть, какие сервисы запущены, можно так:
+systemctl list-units | grep fpm
+systemctl list-units | grep php
+
+В самом PHPStorm тоже нужно сделать необходимые настройки. Добавить хост 127.0.0.1 к прослушиванию.
+Вписать маппинги для папки с проектом, которую хотим дебажить.
+Теперь можно кайфовать!
