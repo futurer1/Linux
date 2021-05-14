@@ -4,6 +4,7 @@
 ------------------------------
 https://www.it-rem.ru/ubuntu-kak-ustanovit-php7-4-v-ubuntu-19-04-18-04-16-04.html
 https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-ubuntu-18-04-ru
+https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-20-04-ru
 https://xdebug.org/docs/upgrade_guide
 
 1. Подключение репозитория и обновление данных о нём
