@@ -1,0 +1,10 @@
+Как создавать видео быстро:
+
+установить ffmpeg
+sudo apt install ffmpeg
+
+ролик из файла изображения и файла со звуком
+ffmpeg -loop 1 -i Untitled.jpg -i Голос\ 004_sd-1\(online-audio-convert.com\).mp3 -c:v libx264 -tune stillimage -c:a aac -b:a 320k -pix_fmt yuv420p -shortest testfullv.mp4
+
+отрезать 15 минут и сохранить в отдельный файл
+ffmpeg -i video_mitr.avi -vcodec copy -acodec copy -ss 00:00:00 -t 00:15:00 trim1.avi
