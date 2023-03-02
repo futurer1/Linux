@@ -1,0 +1,60 @@
+docker ps
+docker images
+docker info
+
+docker build .
+docker build -t my-php-app ./php
+docker remove f8d98930dba2
+docker run CONTAINER_ID
+docker run -d -p 81:80 docker/getting-started
+docker run -p 8001:80 -d my-php-app
+docker run -p 3001:8001 58fd12bf809f
+docker stop CONTAINER_ID
+docker image rm 58fd12bf809f
+
+docker context list
+
+docker-compose build
+docker-compose up
+
+
+
+
+
+------------------------------------------------------------------------
+docker-compose.yml
+------------------
+
+version: '3.1'
+
+services:
+  php:
+    build: ./php
+    ports:
+      - 8081:80
+
+  db:
+    image: mysql
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
+
+------------------------------------------------------------------------
+/php/Dockerfile
+---------------
+FROM php:7.2-apache
+WORKDIR /var/www/html
+COPY . /var/www/html
+EXPOSE 80
+
+------------------------------------------------------------------------
+
