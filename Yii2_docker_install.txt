@@ -1,0 +1,18 @@
+Запуск в докере Yii2 на нестандартном порту.
+
+1. Скачать basic yii2 from https://www.yiiframework.com/download
+
+2. Присвоить значение 'cookieValidationKey' => '', в файле /basic/config/web.php
+
+3. Изменить порт в /basic/docker-compose.yml
+    с '8080:80', например, на '8084:80'
+    
+4. В терминале выполнить:
+    docker-compose up -d
+    
+5. Изменить группу и права у папки /basic/web/assets
+    cd /basic/web
+    sudo chgrp www-data ./assets
+    sudo chmod g+w ./assets/
+
+6. Yii2 должен быть доступен по адресу http://localhost:8084/
