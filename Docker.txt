@@ -1,15 +1,18 @@
-docker ps
-docker images
-docker info
+docker ps // запущенные контейнеры
+docker ps -a // все контейнеры
+docker images // информация о локальных образах
+docker search nginx // поиск доступных для выгрузки образов nginx
+docker info // сводная информация о докере (клиенте и сервере)
+docker --version    // версия докера
 
-docker build .
+docker build .    // создание образа
 docker build -t my-php-app ./php
 docker remove f8d98930dba2
-docker run CONTAINER_ID
+docker run CONTAINER_ID    // запуск контейнера
+docker stop CONTAINER_ID    // остановка контейнера
 docker run -d -p 81:80 docker/getting-started
 docker run -p 8001:80 -d my-php-app
 docker run -p 3001:8001 58fd12bf809f
-docker stop CONTAINER_ID
 docker image rm 58fd12bf809f
 
 docker context list
