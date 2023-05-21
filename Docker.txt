@@ -19,8 +19,15 @@ docker context list
 
 docker-compose build
 docker-compose up
+docker-compose up -d // создание и запуск контейнера в фоновом detached режиме
 
+service docker restart // перезапуск сервиса докер
 
+Созданные контейнеры лежат здесь:
+---------------------------------
+/var/snap/docker/common/var-lib-docker/containers/
+или здесь
+/var/lib/docker/containers/
 
 
 
