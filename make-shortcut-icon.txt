@@ -1,0 +1,18 @@
+cd /usr/share/applications/
+sudo touch my-program-name.desktop
+sudo nano my-program-name.desktop
+
+insert text:
+------------
+[Desktop Entry]
+Name=Idea Ultimate                                        //название ярлыка
+Comment=
+GenericName=
+Keywords=idea                                            //ключевые слова, по которым будет находиться в поиске приложений
+Exec=sh /home/user/idea-IU-232.10203.10/bin/idea.sh      //исполняемая команда
+Terminal=false
+Type=Application
+Icon=/home/user/idea-IU-232.10203.10/bin/idea.png        //путь к иконке приложения
+Path=
+Categories=Development                                   //категория в которой будет отображаться ярлык
+NoDisplay=false
