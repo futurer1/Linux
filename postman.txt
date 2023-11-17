@@ -1,0 +1,2 @@
+Установка:
+sudo snap install postman --edge
