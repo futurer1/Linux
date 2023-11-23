@@ -1,0 +1,33 @@
+Файл должен называться myfilename.service
+Располагаться здесь: /etc/systemd/system
+
+Содержимое файла:
+
+[Unit]
+Description=Some text about this service
+After=syslog.target network.target
+
+[Service]
+SuccessExitStatus=143
+
+
+User=root
+Group=root
+
+
+Type=simple
+
+ExecStart=java -jar /opt/mydir/my-java-service.jar
+
+[Install]
+WantedBy=multi-user.target
+
+
+Статус сервиса:
+systemctl status myfilename.service
+
+Запуск сервиса:
+systemctl start myfilename.service
+
+Остановка сервиса:
+systemctl stop myfilename.service
