@@ -1,0 +1,16 @@
+Установка в докере PostgreSQL:
+------------------------------
+
+docker run -d --hostname tgbotmiddle --name tgbotmiddle -p 5433:5432 -e POSTGRES_USER=userok -e POSTGRES_PASSWORD=p@ssw0rd -e POSTGRES_DB=tgbotmiddle -v /data:/var/lib/postgresql/data --restart=unless-stopped postgres:14.5
+
+-d                                 // выполнить в консоли detached после запуска контейнера
+--hostname tgbotmiddle             // имя хоста для подключения к контейнеру из вне
+--name tgbotmiddle                 // имя контейнера
+-p 5433:5432                       // мост для проброса портов внешний порт 5433, внутри контейнера порт Postrge стандартный 5432
+-e POSTGRES_USER=userok -e POSTGRES_PASSWORD=p@ssw0rd      // задание переменных окружения внутри контейнера пользователя и пароля для соединения с сервером
+-e POSTGRES_DB=tgbotmiddle                                 // название дефолтной базы данных
+-v /data:/var/lib/postgresql/data                          // подключение внешнего тома к контейнеру для того, чтобы хранить (не потерять) в нём данные баз данных когда контейнер отключен
+                                                           // /data - путь данных внутри контейнера
+                                                           // /var/lib/postgresql/data - путь хранения данных на локальной машине
+--restart=unless-stopped          // автозапуск контейнера при старте докера
+postgres:14.5                     // имя образа в репозитории и через : версия образа
