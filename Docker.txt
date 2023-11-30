@@ -3,11 +3,13 @@
 https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04-ru
 
 docker ps // запущенные контейнеры
-docker ps -a // все контейнеры
+docker ps -a // посмотреть все контейнеры
 docker images // информация о локальных образах
 docker search nginx // поиск доступных для выгрузки образов nginx
 docker info // сводная информация о докере (клиенте и сервере)
 docker --version    // версия докера
+
+docker exec -it container_name /bin/bash     // подключиться к контейнеру докера с именем docker exec -it rabbitmq /bin/bash
 
 docker build .    // создание образа
 docker build -t my-php-app ./php
@@ -99,8 +101,9 @@ rabbitmq_data:c:\rabbitmq_data
 $ docker exec -it rabbitmq /bin/bash
 
 Внутри контейнера создать пользователя, сделать его админом и установить права:
-$ rabbitmqctl add_user userok p@ssw0rd
-$ rabbitmqctl set_user_tags userok administrator
-$ rabbitmqctl set_permissions -p / userok ".*" ".*" ".*"
+
+$ rabbitmqctl add_user userok p@ssw0rd                       // создание пользователя userok с паролем p@ssw0rd 
+$ rabbitmqctl set_user_tags userok administrator             // выдача прав администратора
+$ rabbitmqctl set_permissions -p / userok ".*" ".*" ".*"     // выдача разрешений на чтение запись и изменение конфигураций
 
 ------------------------------------------------------------------------
