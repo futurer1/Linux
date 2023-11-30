@@ -14,3 +14,24 @@ docker run -d --hostname tgbotmiddle --name tgbotmiddle -p 5433:5432 -e POSTGRES
                                                            // /var/lib/postgresql/data - путь хранения данных на локальной машине
 --restart=unless-stopped          // автозапуск контейнера при старте докера
 postgres:14.5                     // имя образа в репозитории и через : версия образа
+
+
+Если нужно, то для IDE можно скачать драйвер JBDC
+-------------------------------------------------
+https://jdbc.postgresql.org/download/
+видеоинструкция:
+https://www.youtube.com/watch?v=-MDPYDi01dM
+
+
+Можно скачать через maven:
+--------------------------
+<dependency>
+    <groupId>org.postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+    <version>42.7.0</version>
+</dependency>
+
+Скачать PgAdmin:
+----------------
+https://www.pgadmin.org/download/
+
