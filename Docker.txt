@@ -1,3 +1,7 @@
+Инструкция по установке Docker в Ubuntu:
+----------------------------------------
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04-ru
+
 docker ps // запущенные контейнеры
 docker ps -a // все контейнеры
 docker images // информация о локальных образах
@@ -14,6 +18,8 @@ docker run -d -p 81:80 docker/getting-started
 docker run -p 8001:80 -d my-php-app
 docker run -p 3001:8001 58fd12bf809f
 docker image rm 58fd12bf809f
+docker pull rabbitmq:3.11.0-management // Скачать образ rabbitmq
+docker volume create rabbitmq_data // Создать volume
 
 docker context list
 
@@ -28,7 +34,6 @@ service docker restart // перезапуск сервиса докер
 /var/snap/docker/common/var-lib-docker/containers/
 или здесь
 /var/lib/docker/containers/
-
 
 
 ------------------------------------------------------------------------
@@ -68,3 +73,34 @@ EXPOSE 80
 
 ------------------------------------------------------------------------
 
+
+Установка RabbitMQ в докере:
+----------------------------
+Скачать образ rabbitmq:
+$ docker pull rabbitmq:3.11.0-management
+
+Создать volume:
+$ docker volume create rabbitmq_data
+
+Запустить контейнер с rabbitmq:
+$ docker run -d --hostname rabbitmq --name rabbitmq -p 5672:5672 -p 15672:15672 -v rabbitmq_data:/var/lib/rabbitmq --restart=unless-stopped rabbitmq:3.11.0-management
+Флаги:
+--detach , -d   запустит контейнер в фоновом режиме и вернет идентификатор контейнера в терминал;
+--hostname   адрес контейнера для подключения к нему внутри docker из других контейнеров;
+--name   имя контейнера;
+-p    порты: первый порт — тот, по которому мы будет подключаться снаружи docker, а второй — тот, который используется внутри контейнера;
+-v   примонтировать volume (том), т. е. внешнее хранилище данных;
+--restart=unless-stopped   контейнер будет подниматься заново при каждом перезапуске системы (точнее, при запуске docker);
+
+Так путь к volume может выглядеть в Windows:
+rabbitmq_data:c:\rabbitmq_data
+
+Подключиться к контейнеру с rabbitmq:
+$ docker exec -it rabbitmq /bin/bash
+
+Внутри контейнера создать пользователя, сделать его админом и установить права:
+$ rabbitmqctl add_user userok p@ssw0rd
+$ rabbitmqctl set_user_tags userok administrator
+$ rabbitmqctl set_permissions -p / userok ".*" ".*" ".*"
+
+------------------------------------------------------------------------
