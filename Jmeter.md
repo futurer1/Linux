@@ -3,32 +3,55 @@
 
 С сайта https://jmeter.apache.org/ скачать бинарную версию https://dlcdn.apache.org//jmeter/binaries/
 
-распаковать архив
+Распаковать архив
 ```
 unzip apache-jmeter-5.6.zip
 ```
 
-переименовать папку
+Переименовать папку
 ```
 mv apache-jmeter-5.6 jmeter
 ```
 
-перенести папку с содержимым в /opt
+Перенести папку с содержимым в /opt
 ```
 sudo mv jmeter /opt
 ```
 
-добавить переменную окружения
+Добавить переменную окружения
 ```
 echo 'export PATH="$PATH:/opt/jmeter/bin"' >> ~/.bashrc
 ```
-применить новую конфигурацию
+Применить новую конфигурацию
 ```
 source ~/.bashrc
 ```
 
-зайти и запустить
+Зайти и запустить
 ```
 cd /opt/jmeter/bin
 ./jmeter.sh
+```
+
+Можно создать ярлык
+```
+cd /usr/share/applications/
+sudo touch jmeter.desktop
+sudo nano jmeter.desktop
+```
+
+Вставить в файл конфигурации ярлыка
+```
+[Desktop Entry]
+Name=Apache Jmeter
+Comment=
+GenericName=
+Keywords=jmeter
+Exec=/opt/jmeter/bin/./jmeter.sh
+Terminal=false
+Type=Application
+Icon=/opt/jmeter/docs/images/jmeter_square.png
+Path=
+Categories=Development
+NoDisplay=false
 ```
