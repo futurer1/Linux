@@ -23,3 +23,6 @@ java --version
 //openjdk 15 2020-09-15
 //OpenJDK Runtime Environment (build 15+36-1562)
 //OpenJDK 64-Bit Server VM (build 15+36-1562, mixed mode, sharing)
+
+Узнать путь к java:
+sudo update-alternatives --config java
