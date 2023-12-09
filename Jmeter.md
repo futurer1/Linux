@@ -55,3 +55,9 @@ Path=
 Categories=Development
 NoDisplay=false
 ```
+
+Пример внешнего файла конфигурации для проведения тестов:
+```
+serverAddress,port,path,method,expectedCode
+localhost,8084,/callback/update,POST,200
+```
