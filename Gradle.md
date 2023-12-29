@@ -14,5 +14,7 @@ sudo apt autoclean && sudo apt autoremove
 Commands:
 ```
 gradle tasks
+```
+```
 gradle build
 ```
