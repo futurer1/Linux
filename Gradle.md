@@ -18,3 +18,17 @@ gradle tasks
 ```
 gradle build
 ```
+
+Создать необходимый wrapper
+```
+task wrapper1(type: Wrapper) {
+    gradleVersion = '7.4.2'
+}
+
+выполнить task: gradle wrapper1
+```
+
+Сборка через wrapper
+```
+./gradlew clean build
+```
