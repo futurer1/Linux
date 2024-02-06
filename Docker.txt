@@ -7,7 +7,7 @@ docker ps -a // посмотреть все контейнеры
 docker images // информация о локальных образах
 docker search nginx // поиск доступных для выгрузки образов nginx
 docker info // сводная информация о докере (клиенте и сервере)
-docker --version    // версия докера
+docker --version    // версия докера 
 
 docker exec -it container_name /bin/bash     // подключиться к контейнеру докера с именем docker exec -it rabbitmq /bin/bash
 
