@@ -93,3 +93,50 @@ dependencies {
     implementation project(":common")
 }
 ```
+
+Подключение библиотек через импорт внешнего файла с HashMap содержащей зависимости:
+```java
+allprojects {
+    apply plugin: 'java'
+    apply from: "$rootProject.projectDir/dependencies.gradle"
+
+    group = 'com.mikhail.telegram'
+    version = '0.0.1'
+    java.sourceCompatibility = JavaVersion.VERSION_17
+    java.targetCompatibility = JavaVersion.VERSION_17
+
+    configurations {
+        compileOnly.extendsFrom annotationProcessor
+        testCompileOnly.extendsFrom annotationProcessor
+        testAnnotationProcessor.extendsFrom annotationProcessor
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        testImplementation platform(libsTest.junitBom)
+        testImplementation(libsTest.jupiter)
+
+        compileOnly libs.lombok
+        annotationProcessor libs.lombok
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}
+```
+
+Содержимое файла dependencies.gradle:
+```java
+    ext.libs = [
+            "lombok" : "org.projectlombok:lombok:1.18.24",
+    ]
+
+    ext.libsTest = [
+            'jupiter' : 'org.junit.jupiter:junit-jupiter',
+            'junitBom' : 'org.junit:junit-bom:5.9.1',
+    ]
+```
