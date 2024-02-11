@@ -70,7 +70,8 @@ jar {
 }
 ```
 
-[](https://www.youtube.com/watch?v=pSKY3-K9_qc)
+[Youtube](https://www.youtube.com/watch?v=pSKY3-K9_qc)
+
 Использование зависимостей из подключенной библиотеки (API scope) внутри модуля, к которому подключили библиотеку
 (передача зависимостей):
 ```java
