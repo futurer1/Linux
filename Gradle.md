@@ -70,6 +70,7 @@ jar {
 }
 ```
 
+(https://www.youtube.com/watch?v=pSKY3-K9_qc)[https://www.youtube.com/watch?v=pSKY3-K9_qc]
 Использование зависимостей из подключенной библиотеки (API scope) внутри модуля, к которому подключили библиотеку
 (передача зависимостей):
 ```java
@@ -79,6 +80,15 @@ plugins {
     id 'java-library'
 }
 
+dependencies {
+    api "org.projectlombok:lombok:1.18.24"
+}
+
 // разрешение использовать модуль как библитеку (например, common)
 jar.enabled = true
+
+//В основном модуле подключаем этот common:
+dependencies {
+    implementation project(":common")
+}
 ```
