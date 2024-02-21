@@ -140,3 +140,15 @@ allprojects {
             'junitBom' : 'org.junit:junit-bom:5.9.1',
     ]
 ```
+
+Проверить код линтером на возможные проблемы:
+```groovy
+allprojects {
+
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:deprecation"
+        }
+    }
+}
+```
