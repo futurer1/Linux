@@ -54,7 +54,7 @@ Formatting /tmp/server-3/kraft-combined-logs with metadata.version 3.6-IV2.
 ```
 cd kafka_2.13-3.6.1\bin\
 
-.\kafka-server-start ..\config\kraft\server-1.properties
+./kafka-server-start ..\config\kraft\server-1.properties
 ```
 
 ### Остановка сервера
@@ -64,4 +64,16 @@ Ctrl+C - с потерей логов и работы.
 Более верно остановить producers и consumers
 ```
 ./kafka-server-stop
+```
+
+### Управление топиками
+
+Создать новый топик с именем payment-created-events-topic.
+Имя должно быть уникальное.
+
+--partitions 3 (кол-во партиций. Кол-во консьюмеров должно быть равно кол-ву партиций для параллельной обработки. Если партиция одна, то все будут ломиться в неё и будет однопоточность.)
+--replication-factor 3 (кол-во копий каждой партиции. Одна в лидере и 2 в репликах, не может превышать кол-во серверов)
+--bootstrap-server localhost:9092... (список брокеров в кластере. Правильнее перечислить всех)
+```
+./kafka-topics.sh --create --topic payment-created-events-topic --partitions 3 --replication-factor 3 --bootstrap-server localhost:9092,localhost:9094
 ```
