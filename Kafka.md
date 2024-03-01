@@ -27,7 +27,8 @@ advertised.listeners=PLAINTEXT://localhost:9096
 log.dirs=/tmp/server-1/kraft-combined-logs
 ```
 
-Подготовка запуска кафки из консоли:
+### Подготовка запуска кафки из консоли:
+
 ```
 # заходим в папку кластера
 cd \bin
@@ -45,4 +46,22 @@ Formatting /tmp/server-2/kraft-combined-logs with metadata.version 3.6-IV2.
 
 ./kafka-storage format -t ak284hka82kfh8329hfhak -c ..\config\kraft\server-3.properties
 Formatting /tmp/server-3/kraft-combined-logs with metadata.version 3.6-IV2.
+```
+
+### Запуск с указанием конфига сервера
+
+Каждый сервер в отдельном терминале.
+```
+cd kafka_2.13-3.6.1\bin\
+
+.\kafka-server-start ..\config\kraft\server-1.properties
+```
+
+### Остановка сервера
+
+Ctrl+C - с потерей логов и работы.
+
+Более верно остановить producers и consumers
+```
+./kafka-server-stop
 ```
