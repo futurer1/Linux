@@ -77,3 +77,27 @@ Ctrl+C - с потерей логов и работы.
 ```
 ./kafka-topics.sh --create --topic payment-created-events-topic --partitions 3 --replication-factor 3 --bootstrap-server localhost:9092,localhost:9094
 ```
+
+Получить список всех топиков
+```
+./kafka-topics.sh --list --bootstrap-server localhost:9092,localhost:9094
+```
+
+Более детальная информация про топики
+```
+./kafka-topics.sh --describe --bootstrap-server localhost:9092,localhost:9094
+```
+
+Удаление топика
+В конфиге должно быть: delete.topic.enable=true
+```
+./kafka-topics.sh --delete --topic payment-created-events-topic --bootstrap-server localhost:9092
+```
+## Работа с сообщениями
+
+Отправка сообщения вручную
+В конфиге должно быть (плохая практика!): auto.create.topics.enable=true (для автоматического создания топиков в случае, 
+если сообщение пришло в несуществующий топик. Будет предупреждение WARN, то топик создастся.)
+```
+./kafka-console-producer.sh --bootstrap-server localhost:9092,localhost:9094 --topic payment-cancelled-events-topic --property "parse.key=true" --property "key.separator=:"
+```
