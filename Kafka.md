@@ -101,3 +101,9 @@ Ctrl+C - с потерей логов и работы.
 ```
 ./kafka-console-producer.sh --bootstrap-server localhost:9092,localhost:9094 --topic payment-cancelled-events-topic --property "parse.key=true" --property "key.separator=:"
 ```
+
+## Изменение конфига
+
+```
+./kafka-configs.sh --bootstrap-server localhost:9092,localhost:9094 --alter --entity-type topics --entity-name tovar-created-events-topic --add-config min.insync.replicas=1
+```
