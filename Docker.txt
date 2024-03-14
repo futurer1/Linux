@@ -203,3 +203,5 @@ RUN apk --no-cache add some-package=~1.2.3
 Можно привязать и к конкретной версии, задав ее в виде some-package=1.2.3. 
 Однако, если пакет удален, сборка завершится с ошибкой.
 
+
+sudo apt-get install ./docker-desktop-4.28.0-amd64.deb
