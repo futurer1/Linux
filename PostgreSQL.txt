@@ -41,3 +41,32 @@ https://www.pgadmin.org/download/
 Установка PostgreSQL без докера под Linux:
 sudo apt update
 sudo apt upgrade
+sudo apt install postgresql postgresql-contrib
+
+проверить активность сервиса
+service postgresql status
+
+зайти внутрь
+sudo -i -u postgres
+psql
+
+посмотреть инструкцию к man psql
+
+сменить пароль для пользователя postgres:
+ALTER USER postgres WITH PASSWORD 'mypassword';
+
+создать пользователя myusername c паролем mypassword:
+CREATE USER myusername WITH PASSWORD 'mypassword';
+
+назначить пользователю права суперюзера:
+ALTER USER myusername WITH SUPERUSER;
+
+удалить пользователя:
+DROP USER myusername;
+
+\q - выход из консоли
+\l - список баз данных
+\du - вывести список пользователей
+
+exit - выйти из сервиса postgres
+psql - войти в postgres
