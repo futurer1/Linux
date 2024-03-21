@@ -35,3 +35,9 @@ https://www.youtube.com/watch?v=-MDPYDi01dM
 ----------------
 https://www.pgadmin.org/download/
 
+
+
+
+Установка PostgreSQL без докера под Linux:
+sudo apt update
+sudo apt upgrade
