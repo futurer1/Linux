@@ -1,0 +1,4 @@
+
+Из видео-файла video_filename.mkv будет создан аудио-файл audio_output.mp4 с вырезанием длительности 6 минут, начиная с 00:00:00
+
+ffmpeg -i video_filename.mkv -map 0:a -ss 00:00:00 -t 00:06:00 -acodec copy audio_output.mp4
