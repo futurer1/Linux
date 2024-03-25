@@ -56,6 +56,9 @@ psql
 сменить пароль для пользователя postgres:
 ALTER USER postgres WITH PASSWORD 'mypassword';
 
+включить наследование от родительских ролей
+ALTER USER postgres LOGIN INHERIT;
+
 создать пользователя myusername c паролем mypassword:
 CREATE USER myusername WITH PASSWORD 'mypassword';
 
