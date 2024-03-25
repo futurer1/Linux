@@ -59,6 +59,11 @@ ALTER USER postgres WITH PASSWORD 'mypassword';
 включить наследование от родительских ролей
 ALTER USER postgres LOGIN INHERIT;
 
+Создать роль my_users, включить наследование от суперпользователя postgres с опцией админа
+CREATE ROLE my_users;
+GRANT my_users TO postgres WITH ADMIN OPTION;
+ALTER ROLE my_users INHERIT;
+
 создать пользователя myusername c паролем mypassword:
 CREATE USER myusername WITH PASSWORD 'mypassword';
 
