@@ -80,6 +80,7 @@ DROP USER myusername;
 exit - выйти из сервиса postgres
 psql - войти в postgres
 
+под пользователем postgres сделать импорт базы данных из файла dump_database.sql в базу данных local_my_db
 psql -U postgres -d local_my_db -f /tmp/dump_database.sql
 
 ------------------------------
