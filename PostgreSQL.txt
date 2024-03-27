@@ -80,6 +80,8 @@ DROP USER myusername;
 exit - выйти из сервиса postgres
 psql - войти в postgres
 
+psql -U postgres -d local_my_db -f /tmp/dump_database.sql
+
 ------------------------------
 Установка PGMyAdmin под Linux:
 ------------------------------
