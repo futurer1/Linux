@@ -80,6 +80,14 @@ DROP USER myusername;
 exit - выйти из сервиса postgres
 psql - войти в postgres
 
+------------------------------
+Импорт из файла
+------------------------------
+создать БД (зайдя psql)
+create database local_my_db;
+
+выйти: \q
+
 под пользователем postgres сделать импорт базы данных из файла dump_database.sql в базу данных local_my_db
 psql -U postgres -d local_my_db -f /tmp/dump_database.sql
 
