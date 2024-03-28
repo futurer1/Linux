@@ -47,6 +47,9 @@ sudo apt install postgresql postgresql-contrib
 проверить активность сервиса
 service postgresql status
 
+перезапустить сервис
+sudo service postgresql restart
+
 зайти внутрь
 sudo -i -u postgres
 psql
