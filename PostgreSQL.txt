@@ -99,3 +99,26 @@ curl -fsS https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo gpg --d
 sudo sh -c 'echo "deb [signed-by=/usr/share/keyrings/packages-pgadmin-org.gpg] https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main" > /etc/apt/sources.list.d/pgadmin4.list && apt update'
 
 sudo apt install pgadmin4
+
+
+-------------------------------------------
+Вывести все таблицы и занимаемое ими место:
+-------------------------------------------
+SELECT
+    table_name,
+    pg_size_pretty(table_size) AS table_size,
+    pg_size_pretty(indexes_size) AS indexes_size,
+    pg_size_pretty(total_size) AS total_size
+FROM (
+    SELECT
+        table_name,
+        pg_table_size(table_name) AS table_size,
+        pg_indexes_size(table_name) AS indexes_size,
+        pg_total_relation_size(table_name) AS total_size
+    FROM (
+        SELECT ('"' || table_schema || '"."' || table_name || '"') AS table_name
+        FROM information_schema.tables
+    ) AS all_tables
+    ORDER BY total_size DESC
+) AS pretty_sizes;
+-------------------------------------------
