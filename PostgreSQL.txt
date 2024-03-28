@@ -151,4 +151,7 @@ FROM
 WHERE usename='mescontests'
 	AND state='active'
 ORDER BY pid;
+
+Чтобы видеть все длинные запросы нужно изменить настройку (по умолчанию 1024):
+ALTER SYSTEM SET track_activity_query_size = 16384;
 -------------------------------------------
