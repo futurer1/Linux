@@ -155,3 +155,7 @@ ORDER BY pid;
 Чтобы видеть все длинные запросы нужно изменить настройку (по умолчанию 1024):
 ALTER SYSTEM SET track_activity_query_size = 16384;
 -------------------------------------------
+
+
+Создание индекса для поля field1_name и второго поля deleted_at с проверкой на NULL:
+CREATE INDEX idx_filed_deleted_at ON my_table_name (field1_name) WHERE deleted_at IS NULL;
