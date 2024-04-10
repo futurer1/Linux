@@ -9,3 +9,8 @@
 4. `cd ~/idea-IU-233.14808.21/bin`
 5. `.\idea.sh`
 6. Создать shortcut icon в окне с выбором проектов.
+
+Чтобы всё было красиво:
+```
+rm -rf .java/.userPrefs
+```
