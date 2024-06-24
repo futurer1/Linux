@@ -100,3 +100,6 @@ sudo ip route add 1.2.3.4 dev vpn0 scope link // добавление маршр
 
 // установка корневого сертификата .cer
 /opt/cprocsp/bin/amd64/certmgr -inst -cert -file ~/nazvanie-sertifikata.cer -store uRoot
+
+// удалить 30 строк в конце текстового файла (подходит для очень больших файлов, сотни мегабайт):
+head -n -30 /tmp/log.mytable_dump.sql > /tmp/log.mytable_dump_result.sql
