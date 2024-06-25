@@ -11,6 +11,11 @@ sudo mkdir java-jdk
 3. Распаковать в неё архив:
 sudo tar -C /opt/java-jdk/ -zxf ~/Downloads/openjdk-15_linux-x64_bin.tar.gz
 
+3.1 Можно распаковать в 
+sudo tar -C /usr/lib/jvm/java-11-openjdk-amd64/ -zxf ~/Downloads/openjdk-11_linux-x64_bin.tar.gz
+добавить переменную в конфиг
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
+
 4. Назначить эту версию основной:
 
 sudo update-alternatives --install /usr/bin/java java /opt/java-jdk/jdk-15/bin/java 1
@@ -24,5 +29,11 @@ java --version
 //OpenJDK Runtime Environment (build 15+36-1562)
 //OpenJDK 64-Bit Server VM (build 15+36-1562, mixed mode, sharing)
 
-Узнать путь к java:
+//или
+
+//openjdk 11 2018-09-25
+//OpenJDK Runtime Environment 18.9 (build 11+28)
+//OpenJDK 64-Bit Server VM 18.9 (build 11+28, mixed mode)
+
+Узнать путь к java (и назначить активную версию):
 sudo update-alternatives --config java
