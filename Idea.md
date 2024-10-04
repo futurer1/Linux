@@ -14,3 +14,11 @@
 ```
 rm -rf .java/.userPrefs
 ```
+
+
+Для работы с Lombok в Idea добавить в 
+Setting:
+    Build, Execution, Deployment -> Compiler -> Shared build process VM options
+опцию
+-Djps.track.ap.dependencies=false
+
