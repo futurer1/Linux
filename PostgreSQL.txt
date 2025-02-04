@@ -80,6 +80,12 @@ DROP USER myusername;
 \l - список баз данных
 \du - вывести список пользователей
 
+подключиться к базе данных (находясь в консоли psql):
+\c local_db_name;
+
+вывести структуру таблицы внутри бд, к которой подключились:
+\d db_shema_name.table_name;
+
 exit - выйти из сервиса postgres
 psql - войти в postgres
 
@@ -159,3 +165,6 @@ ALTER SYSTEM SET track_activity_query_size = 16384;
 
 Создание индекса для поля field1_name и второго поля deleted_at с проверкой на NULL:
 CREATE INDEX idx_filed_deleted_at ON my_table_name (field1_name) WHERE deleted_at IS NULL;
+
+
+
