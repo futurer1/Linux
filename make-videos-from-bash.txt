@@ -56,3 +56,9 @@ ffmpeg -f concat -i list.txt -c copy joined-out.mp4
 20220409_152245-trim.mp4
 20220409_152605-trim.mp4
 ------------------------
+
+
+
+Отрезать с 10 секунды продолжительность 3 минуты 15 секунд.
+ffmpeg -i source-filename.mkv -bsf:v h264_mp4toannexb -vcodec copy -acodec copy -ss 00:00:10 -t 00:03:15 trim.avi
+
